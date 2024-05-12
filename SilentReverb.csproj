@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{79F87764-C7C8-4282-BC82-94C6FACE4C52}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SilentReverbMod</RootNamespace>
+    <AssemblyName>SilentReverb</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <DocumentationFile>
+    </DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony" />
+    <Reference Include="1SMotion-Loader" />
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\Desktop\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\Desktop\Managed\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>..\..\Desktop\Managed\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\Desktop\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\Desktop\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\Desktop\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\Desktop\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dialog.cs" />
+    <Compile Include="Bufs.cs" />
+    <Compile Include="Animations\BehaviourAction_BlackReverbDualWield.cs" />
+    <Compile Include="Animations\BehaviourAction_BlackReverbFurioso.cs" />
+    <Compile Include="Animations\BehaviourAction_BlackReverbFuriosoHurt.cs" />
+    <Compile Include="Animations\BehaviourAction_BlackReverbFuriosoPlus.cs" />
+    <Compile Include="Animations\BehaviourAction_BlackReverbLongSword.cs" />
+    <Compile Include="Animations\BehaviourAction_SilentReverbResonate.cs" />
+    <Compile Include="Animations\BehaviourAction_SiRvargalia_area_ex.cs" />
+    <Compile Include="Animations\BehaviourAction_SiRvAxeMaceAction.cs" />
+    <Compile Include="Animations\BehaviourAction_SiRvDawnAction.cs" />
+    <Compile Include="Animations\BehaviourAction_SiRvDawnAction2.cs" />
+    <Compile Include="Animations\BehaviourAction_SiRvRangaAction.cs" />
+    <Compile Include="Animations\BehaviourAction_SiRvVivaceAction.cs" />
+    <Compile Include="DiceAttackEffectBase.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAdagioDice.cs" />
+    <Compile Include="DiceAbilities\Base.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAdd3PoorAtk.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAddPoorAtk.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAllasHurtDice.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAllasHurtPowerDown.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAnimatoDice.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAnimatoGuard.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAppas.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAppasBuff.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAtk3Vibrate.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvAtk4Vibrate.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvCreschendo1.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvCreschendo2.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvCreschendoBoss1.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvCrystalDice.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvCrystalDiceBoss.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvCrystalDiceHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvDanza1.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvFinalDice.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvFinalDiceBoss.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvMook.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvMookHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvPower2OnLose.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvPowerNoRes.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvPowerNoVibration.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvPowerRes.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvPrestoDice.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvRanga.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvRenotePower.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvRerollNoResonance.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvRerollResonance.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvResonateDice.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvSilentReverbBase.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvVibrateDmg.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvWheelDiceHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvWheels.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAdagio.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAllas.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAllasHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAllasHurt2.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAndante.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAnimato.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAnimatoHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAppasEffect.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAppasHurtEffect.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvAssolo.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvBase.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvCreschendo.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvCreschendoBoss.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvCrystal.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvCrystalHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvCrystalHurt2.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvDanza.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvEgo.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvEnemy.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvFinal.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvFinal1.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvFinalBoss.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvLargo.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvLento.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvLibera.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvModerato.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvMookBeat.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvMookBeatHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvMookBeatHurt2.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvOldBoys.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvOldBoysHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvOldBoysHurt2.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvPoor.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvPresto.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvRangaHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvRangaRegen.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvResonate.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvResonateHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvVivace.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvWheel.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvWheelHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvZelkova.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvZelkovaHurt.cs" />
+    <Compile Include="DiceAbilities\DiceCardSelfAbility_SiRvZelkovaHurt2.cs" />
+    <Compile Include="DiceAttackEffects.cs" />
+    <Compile Include="FarAreaeffect_SiRvArgaliaAreaEx.cs" />
+    <Compile Include="PassiveAbility_Resonance.cs" />
+    <Compile Include="PassiveAbility_SilentReverb1.cs" />
+    <Compile Include="PassiveAbility_SilentReverbBoss.cs" />
+    <Compile Include="PassiveAbility_SilentReverbBoss2.cs" />
+    <Compile Include="PassiveAbility_SilentReverbPlayer.cs" />
+    <Compile Include="PassiveAbility_SiRvArgaliaRetaliate.cs" />
+    <Compile Include="PassiveAbility_SiRvNoise.cs" />
+    <Compile Include="PassiveAbility_SiRvStaggerHeal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResonanceEffect.cs" />
+    <Compile Include="SilentReverb_ModInit.cs" />
+    <Compile Include="System\Runtime\CompilerServices\IgnoresAccessChecksToAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="0Harmony.dll" />
+    <Content Include="1SMotion-Loader.dll" />
+    <Content Include="Assembly-CSharp.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
