@@ -11,13 +11,14 @@
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>C:\Program Files (x86)\Steam\steamapps\workshop\content\1256670\NormalInvitation\Assemblies</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,10 +42,15 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony" />
-    <Reference Include="1SMotion-Loader" />
+    <Reference Include="0Harmony">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="1SMotion-Loader">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\Desktop\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\Desktop\Managed\System.dll</HintPath>
@@ -54,15 +60,19 @@
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
       <HintPath>..\..\Desktop\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\Desktop\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>..\..\Desktop\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\..\Desktop\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -181,9 +191,44 @@
     <Compile Include="System\Runtime\CompilerServices\IgnoresAccessChecksToAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="0Harmony.dll" />
-    <Content Include="1SMotion-Loader.dll" />
-    <Content Include="Assembly-CSharp.dll" />
+    <Content Include="Dependices\0Harmony.dll" />
+    <Content Include="Dependices\1SMotion-Loader.dll" />
+    <Content Include="Dependices\Assembly-CSharp-firstpass.dll" />
+    <Content Include="Dependices\Assembly-CSharp.dll" />
+    <Content Include="Dependices\Facepunch.Steamworks.Win64.dll" />
+    <Content Include="Dependices\Ookii.Dialogs.dll" />
+    <Content Include="Dependices\spine-unity.dll" />
+    <Content Include="Dependices\System.dll" />
+    <Content Include="Dependices\System.Xml.dll" />
+    <Content Include="Dependices\Unity.Mathematics.dll" />
+    <Content Include="Dependices\Unity.Postprocessing.Runtime.dll" />
+    <Content Include="Dependices\Unity.TextMeshPro.dll" />
+    <Content Include="Dependices\UnityEngine.AnimationModule.dll" />
+    <Content Include="Dependices\UnityEngine.AssetBundleModule.dll" />
+    <Content Include="Dependices\UnityEngine.AudioModule.dll" />
+    <Content Include="Dependices\UnityEngine.CoreModule.dll" />
+    <Content Include="Dependices\UnityEngine.GridModule.dll" />
+    <Content Include="Dependices\UnityEngine.ImageConversionModule.dll" />
+    <Content Include="Dependices\UnityEngine.IMGUIModule.dll" />
+    <Content Include="Dependices\UnityEngine.InputLegacyModule.dll" />
+    <Content Include="Dependices\UnityEngine.ParticleSystemModule.dll" />
+    <Content Include="Dependices\UnityEngine.Physics2DModule.dll" />
+    <Content Include="Dependices\UnityEngine.PhysicsModule.dll" />
+    <Content Include="Dependices\UnityEngine.SharedInternalsModule.dll" />
+    <Content Include="Dependices\UnityEngine.SpriteMaskModule.dll" />
+    <Content Include="Dependices\UnityEngine.SubsystemsModule.dll" />
+    <Content Include="Dependices\UnityEngine.TextCoreModule.dll" />
+    <Content Include="Dependices\UnityEngine.TextRenderingModule.dll" />
+    <Content Include="Dependices\UnityEngine.TilemapModule.dll" />
+    <Content Include="Dependices\UnityEngine.UI.dll" />
+    <Content Include="Dependices\UnityEngine.UIModule.dll" />
+    <Content Include="Dependices\UnityEngine.UnityWebRequestAudioModule.dll" />
+    <Content Include="Dependices\UnityEngine.UnityWebRequestModule.dll" />
+    <Content Include="Dependices\UnityEngine.VideoModule.dll" />
+    <Content Include="Dependices\UnityEngine.VRModule.dll" />
+    <Content Include="Dependices\UnityEngine.WindModule.dll" />
+    <Content Include="Dependices\UnityEngine.XRModule.dll" />
+    <Content Include="Dependices\XGamingRuntime.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

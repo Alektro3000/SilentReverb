@@ -111,7 +111,12 @@ namespace SilentReverbMod
             owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Strength, 1, null);
         }
 
-
+        // Token: 0x06000012 RID: 18 RVA: 0x00002113 File Offset: 0x00000313
+        public override void OnRoundStart()
+        {
+            base.OnRoundStart();
+            ResonanceCount = 0;
+        }
         public override void OnUseCard(BattlePlayingCardDataInUnitModel curCard)
         {
             //Применяем +4 силы на каждую третью страницу

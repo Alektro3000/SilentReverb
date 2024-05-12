@@ -7,7 +7,6 @@
         public override bool OnChooseCard(BattleUnitModel owner)
         {
             return GetUniqueCardCount() >= 5;
-
         }
     }
 }

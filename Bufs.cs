@@ -8,7 +8,7 @@ public class BattleDiceCardBuf_SilentRevCounter : BattleDiceCardBuf
 }
 
 
-//Баф количества резонанса от Крещендо
+//Баф количества резонанса от Фуриосы
 public class BattleUnitBuf_SilentFinalPlus : BattleUnitBuf
 {
     protected override string keywordId
@@ -69,7 +69,7 @@ public class BattleUnitBuf_SiRvResonanceBuf : BattleUnitBuf
 {
     protected override string keywordId
     {
-        get => "SilentReverb" + (int)Flags;
+        get => "SilentReverb" + Flags;
     }
 
     protected override string keywordIconId

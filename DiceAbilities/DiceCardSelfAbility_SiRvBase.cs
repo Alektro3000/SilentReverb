@@ -1,4 +1,6 @@
-﻿namespace SilentReverbMod
+﻿using System.IO;
+
+namespace SilentReverbMod
 {
     // Token: 0x0200000B RID: 11
     public class DiceCardSelfAbility_SiRvBase : DiceCardSelfAbilityBase
@@ -15,8 +17,19 @@
         }
         public int GetUniqueCardCount()
         {
+            if (owner == null)
+                return 0;
+            if (owner.passiveDetail == null)
+                return 0;
+            if (owner.passiveDetail.PassiveList == null)
+                return 0;
+
+
             PassiveAbilityBase PlayerP = owner.passiveDetail.PassiveList.Find(x => x is PassiveAbility_SilentReverbPlayer);
+            
+            
             PassiveAbility_SilentReverbPlayer PlayerPas = PlayerP as PassiveAbility_SilentReverbPlayer;
+
 
             if (PlayerPas != null)
             {
