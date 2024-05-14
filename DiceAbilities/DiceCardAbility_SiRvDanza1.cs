@@ -10,7 +10,7 @@ namespace SilentReverbMod
         {
             target.bufListDetail.RemoveBufAll(KeywordBuf.Vibrate);
             int num = base.card.speedDiceResultValue;
-            if (this.res == 0)
+            if (res == 0)
             {
                 num += RandomUtil.Range(-1, 1);
             }
@@ -20,7 +20,7 @@ namespace SilentReverbMod
         // Token: 0x0600011F RID: 287 RVA: 0x0000288F File Offset: 0x00000A8F
         public override void BeforeRollDice()
         {
-            this.res = base.Resonance();
+            res = base.Resonance();
         }
 
         // Token: 0x04000061 RID: 97

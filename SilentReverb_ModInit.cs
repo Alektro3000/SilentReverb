@@ -2,6 +2,7 @@
 using HarmonyLib;
 using LOR_BattleUnit_UI;
 using LOR_XML;
+using SilentReverbMod;
 using SMotionLoader;
 using System;
 using System.Collections.Generic;
@@ -22,36 +23,36 @@ public class SilentReverb_ModInit : ModInitializer
     {
         get
         {
-            if (SilentReverb_ModInit._path == null)
+            if (_path == null)
             {
-                SilentReverb_ModInit._path = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));
+                _path = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));
             }
-            return SilentReverb_ModInit._path;
+            return _path;
         }
     }
 
     // Token: 0x060000C1 RID: 193 RVA: 0x00004194 File Offset: 0x00002394
     static SilentReverb_ModInit()
     {
-        SilentReverb_ModInit.sprites2 = new List<Sprite>();
-        SilentReverb_ModInit.sprites3 = new List<Sprite>();
-        SilentReverb_ModInit.sprites4 = new List<Sprite>();
-        SilentReverb_ModInit.vector = Vector3.zero;
-        SilentReverb_ModInit.vector2 = Vector3.zero;
-        SilentReverb_ModInit.ArtWorks = new Dictionary<string, Sprite>();
+        sprites2 = new List<Sprite>();
+        sprites3 = new List<Sprite>();
+        sprites4 = new List<Sprite>();
+        vector = Vector3.zero;
+        vector2 = Vector3.zero;
+        ArtWorks = new Dictionary<string, Sprite>();
     }
 
     // Token: 0x060000C2 RID: 194 RVA: 0x00004220 File Offset: 0x00002420
     public override void OnInitializeMod()
     {
-        SilentReverb_ModInit.language = GlobalGameManager.Instance.CurrentOption.language;
-        SilentReverb_ModInit.AddLocalize();
+        language = GlobalGameManager.Instance.CurrentOption.language;
+        AddLocalize();
         Harmony harmony = new Harmony("LOR.SilentReverb_Mod");
         MethodInfo method = typeof(SilentReverb_ModInit).GetMethod("UISettingInvenEquipPageListSlot_SetBooksData");
         harmony.Patch(typeof(UISettingInvenEquipPageListSlot).GetMethod("SetBooksData", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
-        SilentReverb_ModInit.GetArtWorks(new DirectoryInfo(SilentReverb_ModInit.path + "/ArtWork"));
-        SilentReverb_ModInit.uiinit = true;
-        SilentReverb_ModInit.uiinit2 = true;
+        GetArtWorks(new DirectoryInfo(path + "/ArtWork"));
+        uiinit = true;
+        uiinit2 = true;
         method = typeof(SilentReverb_ModInit).GetMethod("UnitDataModel_InitBattleDialogByDefaultBook");
         harmony.Patch(typeof(UnitDataModel).GetMethod("InitBattleDialogByDefaultBook", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
         method = typeof(SilentReverb_ModInit).GetMethod("BattleDialogueModel_6_GetBattleDlg_Pre");
@@ -71,27 +72,39 @@ public class SilentReverb_ModInit : ModInitializer
         }, null), new HarmonyMethod(method), null, null, null, null);
         method = typeof(SilentReverb_ModInit).GetMethod("UnitDataModel_InitBattleDialogByDefaultBook");
         harmony.Patch(typeof(UnitDataModel).GetMethod("InitBattleDialogByDefaultBook", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
-        SilentReverb_ModInit.uiinit = true;
-        SilentReverb_ModInit.uiinit2 = true;
-        SilentReverb_ModInit.uiinit3 = true;
-        SilentReverb_ModInit.Init = true;
+        uiinit = true;
+        uiinit2 = true;
+        uiinit3 = true;
+        Init = true;
+
         method = typeof(SilentReverb_ModInit).GetMethod("BattleDiceCardUI_SetCardPrefix");
         harmony.Patch(typeof(BattleDiceCardUI).GetMethod("SetCard", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
+        
         method = typeof(SilentReverb_ModInit).GetMethod("UIOriginCardSlot_SetDataPrefix");
         harmony.Patch(typeof(UIOriginCardSlot).GetMethod("SetData", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
+        
         method = typeof(SilentReverb_ModInit).GetMethod("BattleDiceCardUI_SetCard");
         harmony.Patch(typeof(BattleDiceCardUI).GetMethod("SetCard", AccessTools.all), null, new HarmonyMethod(method), null, null, null);
+        
         method = typeof(SilentReverb_ModInit).GetMethod("UIOriginCardSlot_SetData");
         harmony.Patch(typeof(UIOriginCardSlot).GetMethod("SetData", AccessTools.all), null, new HarmonyMethod(method), null, null, null);
+        
         method = typeof(SilentReverb_ModInit).GetMethod("DiceEffectManager_CreateBehaviourEffect_Pre");
         harmony.Patch(typeof(DiceEffectManager).GetMethod("CreateBehaviourEffect", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
+        
         method = typeof(SilentReverb_ModInit).GetMethod("DiceEffectManager_CreateBehaviourEffect");
         harmony.Patch(typeof(DiceEffectManager).GetMethod("CreateBehaviourEffect", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
+        
         method = typeof(SilentReverb_ModInit).GetMethod("SpeedDiceUI_CheckBlockDice");
         harmony.Patch(typeof(SpeedDiceUI).GetMethod("CheckBlockDice", AccessTools.all), null, new HarmonyMethod(method), null, null, null);
+        
         method = typeof(SilentReverb_ModInit).GetMethod("BookModel_GetThumbSprite");
         harmony.Patch(typeof(BookModel).GetMethod("GetThumbSprite", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
-        Events.OnSkinReloadingCompletion += SilentReverb_ModInit.CopySkinToProjections;
+        
+        method = typeof(SilentReverb_ModInit).GetMethod("Decision_Pre");
+        harmony.Patch(typeof(BattleParryingManager).GetMethod("GetDecisionResult", AccessTools.all), new HarmonyMethod(method), null, null, null, null);
+
+        Events.OnSkinReloadingCompletion += CopySkinToProjections;
     }
 
     // Token: 0x060000C3 RID: 195 RVA: 0x00004650 File Offset: 0x00002850
@@ -117,8 +130,8 @@ public class SilentReverb_ModInit : ModInitializer
         {
             image.enabled = true;
             image2.enabled = true;
-            image2.sprite = SilentReverb_ModInit.ArtWorks["Icon"];
-            image.sprite = SilentReverb_ModInit.ArtWorks["Icon"];
+            image2.sprite = ArtWorks["Icon"];
+            image.sprite = ArtWorks["Icon"];
         }
         __instance.SetFrameColor(UIColorManager.Manager.GetUIColor(UIColor.Default));
         List<BookModel> list2 = new List<BookModel>((List<BookModel>)typeof(UIInvenEquipPageListSlot).GetMethod("ApplyFilterBooksInStory", AccessTools.all).Invoke(__instance, new object[]
@@ -151,7 +164,7 @@ public class SilentReverb_ModInit : ModInitializer
             DirectoryInfo[] directories = dir.GetDirectories();
             for (int i = 0; i < directories.Length; i++)
             {
-                SilentReverb_ModInit.GetArtWorks(directories[i]);
+                GetArtWorks(directories[i]);
             }
         }
         foreach (System.IO.FileInfo fileInfo in dir.GetFiles())
@@ -160,21 +173,21 @@ public class SilentReverb_ModInit : ModInitializer
             texture2D.LoadImage(File.ReadAllBytes(fileInfo.FullName));
             Sprite value = Sprite.Create(texture2D, new Rect(0f, 0f, (float)texture2D.width, (float)texture2D.height), new Vector2(0f, 0f));
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.FullName);
-            SilentReverb_ModInit.ArtWorks[fileNameWithoutExtension] = value;
+            ArtWorks[fileNameWithoutExtension] = value;
         }
     }
 
     // Token: 0x060000C6 RID: 198 RVA: 0x00004950 File Offset: 0x00002B50
     public static void BattleDiceCardUI_SetCardPrefix(BattleDiceCardUI __instance, Sprite[] ___costNumberSprite, NumbersData ___costNumbers, ref Color ___colorFrame, ref Color ___colorLineardodge, ref Color ___colorLineardodge_deactive, BattleDiceCardModel cardModel, params BattleDiceCardUI.Option[] options)
     {
-        if (cardModel != null && !SilentReverb_ModInit.uiinit)
+        if (cardModel != null && !uiinit)
         {
-            __instance.img_Frames[0].sprite = SilentReverb_ModInit.sprites[0];
-            __instance.img_Frames[1].sprite = SilentReverb_ModInit.sprites[1];
-            __instance.img_Frames[2].sprite = SilentReverb_ModInit.sprites[1];
-            __instance.img_Frames[3].sprite = SilentReverb_ModInit.sprites[1];
-            __instance.img_Frames[4].sprite = SilentReverb_ModInit.sprites[2];
-            ___costNumbers.firstNumbers.content.gameObject.transform.localPosition = SilentReverb_ModInit.vector;
+            __instance.img_Frames[0].sprite = sprites[0];
+            __instance.img_Frames[1].sprite = sprites[1];
+            __instance.img_Frames[2].sprite = sprites[1];
+            __instance.img_Frames[3].sprite = sprites[1];
+            __instance.img_Frames[4].sprite = sprites[2];
+            ___costNumbers.firstNumbers.content.gameObject.transform.localPosition = vector;
         }
     }
 
@@ -183,14 +196,14 @@ public class SilentReverb_ModInit : ModInitializer
     {
         if (cardModel != null && cardModel.GetID().packageId == "SilentReverb")
         {
-            if (SilentReverb_ModInit.uiinit)
+            if (uiinit)
             {
-                SilentReverb_ModInit.uiinit = false;
-                SilentReverb_ModInit.sprites.Add(__instance.img_Frames[0].sprite);
-                SilentReverb_ModInit.sprites.Add(__instance.img_Frames[1].sprite);
-                SilentReverb_ModInit.sprites.Add(__instance.img_Frames[4].sprite);
-                SilentReverb_ModInit.vector = ___costNumbers.firstNumbers.content.gameObject.transform.localPosition;
-                SilentReverb_ModInit.vector2 = ___costNumbers.firstNumbers.content.gameObject.transform.localPosition + new Vector3(25f, 0f, 0f);
+                uiinit = false;
+                sprites.Add(__instance.img_Frames[0].sprite);
+                sprites.Add(__instance.img_Frames[1].sprite);
+                sprites.Add(__instance.img_Frames[4].sprite);
+                vector = ___costNumbers.firstNumbers.content.gameObject.transform.localPosition;
+                vector2 = ___costNumbers.firstNumbers.content.gameObject.transform.localPosition + new Vector3(25f, 0f, 0f);
             }
             if (cardModel.GetID().packageId == "SilentReverb")
             {
@@ -198,19 +211,19 @@ public class SilentReverb_ModInit : ModInitializer
                 ___colorLineardodge = new Color(1f, 1f, 1f, 0f);
                 ___colorLineardodge_deactive = new Color(1f, 1f, 1f, 0f);
                 ___colorLineardodge_deactive.a = 0f;
-                __instance.img_Frames[0].sprite = SilentReverb_ModInit.ArtWorks["ReverbLeftPage_Base"];
-                __instance.img_Frames[1].sprite = SilentReverb_ModInit.ArtWorks["Reverb_bufBaseFrame"];
-                __instance.img_Frames[2].sprite = SilentReverb_ModInit.ArtWorks["Reverb_bufBaseFrame"];
-                __instance.img_Frames[3].sprite = SilentReverb_ModInit.ArtWorks["Reverb_bufBaseFrame"];
-                __instance.img_Frames[4].sprite = SilentReverb_ModInit.ArtWorks["ReverbRightPage_Base"];
-                ___costNumbers.firstNumbers.content.gameObject.transform.localPosition = SilentReverb_ModInit.vector;
+                __instance.img_Frames[0].sprite = ArtWorks["ReverbLeftPage_Base"];
+                __instance.img_Frames[1].sprite = ArtWorks["Reverb_bufBaseFrame"];
+                __instance.img_Frames[2].sprite = ArtWorks["Reverb_bufBaseFrame"];
+                __instance.img_Frames[3].sprite = ArtWorks["Reverb_bufBaseFrame"];
+                __instance.img_Frames[4].sprite = ArtWorks["ReverbRightPage_Base"];
+                ___costNumbers.firstNumbers.content.gameObject.transform.localPosition = vector;
                 __instance.GetType().GetMethod("SetFrameColor", AccessTools.all).Invoke(__instance, new object[]
                 {
                     ___colorFrame
                 });
                 __instance.GetType().GetMethod("SetRangeIconHsv", AccessTools.all).Invoke(__instance, new object[]
                 {
-                    SilentReverb_ModInit.___colorRange
+                    ___colorRange
                 });
                 __instance.GetType().GetMethod("SetLinearDodgeColor", AccessTools.all, null, new Type[]
                 {
@@ -226,12 +239,12 @@ public class SilentReverb_ModInit : ModInitializer
     // Token: 0x060000C8 RID: 200 RVA: 0x00004CBC File Offset: 0x00002EBC
     public static void UIOriginCardSlot_SetDataPrefix(UIOriginCardSlot __instance, DiceCardItemModel cardmodel, Image[] ___img_Frames, Image ___img_Artwork, ref Color ___colorFrame, ref Color ___colorLineardodge)
     {
-        if (cardmodel != null && !SilentReverb_ModInit.uiinit2)
+        if (cardmodel != null && !uiinit2)
         {
-            ___img_Frames[0].sprite = SilentReverb_ModInit.sprites2[0];
-            if (__instance is UIDetailCardSlot && SilentReverb_ModInit.sprites2.Count > 1)
+            ___img_Frames[0].sprite = sprites2[0];
+            if (__instance is UIDetailCardSlot && sprites2.Count > 1)
             {
-                __instance.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = SilentReverb_ModInit.sprites2[1];
+                __instance.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = sprites2[1];
             }
         }
     }
@@ -243,20 +256,20 @@ public class SilentReverb_ModInit : ModInitializer
         {
             ___colorFrame = new Color(1f, 1f, 1f, 1f);
             ___colorLineardodge = new Color(1f, 1f, 1f, 0f);
-            if (SilentReverb_ModInit.uiinit2)
+            if (uiinit2)
             {
-                SilentReverb_ModInit.uiinit2 = false;
-                SilentReverb_ModInit.sprites2.Add(___img_Frames[0].sprite);
+                uiinit2 = false;
+                sprites2.Add(___img_Frames[0].sprite);
             }
-            if (SilentReverb_ModInit.sprites2.Count == 1 && __instance is UIDetailCardSlot)
+            if (sprites2.Count == 1 && __instance is UIDetailCardSlot)
             {
                 Image component = __instance.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Image>();
-                SilentReverb_ModInit.sprites2.Add(component.sprite);
+                sprites2.Add(component.sprite);
             }
-            ___img_Frames[0].sprite = SilentReverb_ModInit.ArtWorks["ReverbLeftPage_Base"];
+            ___img_Frames[0].sprite = ArtWorks["ReverbLeftPage_Base"];
             if (__instance is UIDetailCardSlot)
             {
-                __instance.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = SilentReverb_ModInit.ArtWorks["ReverbRightPage_Base"];
+                __instance.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = ArtWorks["ReverbRightPage_Base"];
             }
             __instance.GetType().GetMethod("SetFrameColor", AccessTools.all).Invoke(__instance, new object[]
             {
@@ -264,7 +277,7 @@ public class SilentReverb_ModInit : ModInitializer
             });
             __instance.GetType().GetMethod("SetRangeIconHsv", AccessTools.all).Invoke(__instance, new object[]
             {
-                SilentReverb_ModInit.___colorRange
+                ___colorRange
             });
             __instance.GetType().GetMethod("SetLinearDodgeColor", AccessTools.all, null, new Type[]
             {
@@ -287,21 +300,21 @@ public class SilentReverb_ModInit : ModInitializer
         }
         else
         {
-            if (!SilentReverb_ModInit.CustomEffects.ContainsKey(resource) && resource != string.Empty)
+            if (!CustomEffects.ContainsKey(resource) && resource != string.Empty)
             {
                 foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())
                 {
                     if (type.Name == "DiceAttackEffect_" + resource)
                     {
                         Type value = type;
-                        SilentReverb_ModInit.CustomEffects[resource] = value;
+                        CustomEffects[resource] = value;
                         break;
                     }
                 }
             }
-            if (SilentReverb_ModInit.CustomEffects.ContainsKey(resource))
+            if (CustomEffects.ContainsKey(resource))
             {
-                Type componentType = SilentReverb_ModInit.CustomEffects[resource];
+                Type componentType = CustomEffects[resource];
                 DiceAttackEffect diceAttackEffect = new GameObject(resource).AddComponent(componentType) as DiceAttackEffect;
                 diceAttackEffect.Initialize(self, target, 1f);
                 diceAttackEffect.SetScale(scaleFactor);
@@ -327,21 +340,21 @@ public class SilentReverb_ModInit : ModInitializer
         }
         else
         {
-            if (!SilentReverb_ModInit.CustomEffects.ContainsKey(resource) && resource != string.Empty)
+            if (!CustomEffects.ContainsKey(resource) && resource != string.Empty)
             {
-                foreach (Type type in Assembly.LoadFrom(SilentReverb_ModInit.path + "/SilentReverb.dll").GetTypes())
+                foreach (Type type in Assembly.LoadFrom(path + "/SilentReverb.dll").GetTypes())
                 {
                     if (type.Name == "DiceAttackEffect_" + resource)
                     {
                         Type value = type;
-                        SilentReverb_ModInit.CustomEffects[resource] = value;
+                        CustomEffects[resource] = value;
                         break;
                     }
                 }
             }
-            if (SilentReverb_ModInit.CustomEffects.ContainsKey(resource))
+            if (CustomEffects.ContainsKey(resource))
             {
-                Type componentType = SilentReverb_ModInit.CustomEffects[resource];
+                Type componentType = CustomEffects[resource];
                 DiceAttackEffect diceAttackEffect = new GameObject(resource).AddComponent(componentType) as DiceAttackEffect;
                 diceAttackEffect.Initialize(self, target, 1f);
                 diceAttackEffect.SetScale(scaleFactor);
@@ -360,7 +373,7 @@ public class SilentReverb_ModInit : ModInitializer
     public static void SpeedDiceUI_CheckBlockDice(SpeedDiceUI __instance, BattleUnitView ____view, ref bool __result)
     {
         int orderOfDice = __instance.OrderOfDice;
-        if (____view.model.passiveDetail.PassiveList.Exists((PassiveAbilityBase x) => x.id.id == 10 && x.id.packageId == SilentReverb_ModInit.packageId) && ____view.speedDiceSetterUI.SpeedDicesCount > 2 && orderOfDice == 0)
+        if (____view.model.passiveDetail.PassiveList.Exists((PassiveAbilityBase x) => x.id.id == 10 && x.id.packageId == packageId) && ____view.speedDiceSetterUI.SpeedDicesCount > 2 && orderOfDice == 0)
         {
             __result = true;
         }
@@ -370,11 +383,11 @@ public class SilentReverb_ModInit : ModInitializer
     public static bool BookModel_GetThumbSprite(BookModel __instance, ref Sprite __result)
     {
         bool result;
-        if (__instance.BookId.packageId == SilentReverb_ModInit.packageId)
+        if (__instance.BookId.packageId == packageId)
         {
             if (__instance.BookId.id == 10000001)
             {
-                __result = SilentReverb_ModInit.ArtWorks["SilenceArgaliaThumb"];
+                __result = ArtWorks["SilenceArgaliaThumb"];
             }
             result = false;
         }
@@ -389,7 +402,7 @@ public class SilentReverb_ModInit : ModInitializer
     public static void AddLocalize()
     {
         typeof(BattleEffectTextsXmlList).GetField("_dictionary", AccessTools.all).GetValue(Singleton<BattleEffectTextsXmlList>.Instance);
-        System.IO.FileInfo[] files = new DirectoryInfo(SilentReverb_ModInit.path + "/Localize/" + SilentReverb_ModInit.language + "/BattleDialogues").GetFiles();
+        System.IO.FileInfo[] files = new DirectoryInfo(path + "/Localize/" + language + "/BattleDialogues").GetFiles();
         for (int i = 0; i < files.Length; i++)
         {
             using (StringReader stringReader = new StringReader(File.ReadAllText(files[i].FullName)))
@@ -404,7 +417,7 @@ public class SilentReverb_ModInit : ModInitializer
     public static bool BattleDialogueModel_6_GetBattleDlg_Pre(DialogType dlgType, ref string __result)
     {
         bool flag = Singleton<StageController>.Instance.GetStageModel().ClassInfo.id == new LorId("SilentReverb", 1) && Singleton<StageController>.Instance.CurrentWave == 1;
-        string battleDlg = SilentReverb_ModInit.GetBattleDlg(dlgType, "BlackArgaliaGeburaSay");
+        string battleDlg = GetBattleDlg(dlgType, "BlackArgaliaGeburaSay");
         if (flag && battleDlg != string.Empty)
         {
             __result = battleDlg;
@@ -417,7 +430,7 @@ public class SilentReverb_ModInit : ModInitializer
     public static bool BattleDialogueModel_8_GetBattleDlg_Pre(DialogType dlgType, ref string __result)
     {
         bool flag = Singleton<StageController>.Instance.GetStageModel().ClassInfo.id == new LorId("SilentReverb", 1) && Singleton<StageController>.Instance.CurrentWave == 1;
-        string battleDlg = SilentReverb_ModInit.GetBattleDlg(dlgType, "BlackArgaliaBinahSay");
+        string battleDlg = GetBattleDlg(dlgType, "BlackArgaliaBinahSay");
         if (flag && battleDlg != string.Empty)
         {
             __result = battleDlg;
@@ -430,7 +443,7 @@ public class SilentReverb_ModInit : ModInitializer
     public static bool BattleDialogueModel_10_GetBattleDlg_Pre(DialogType dlgType, ref string __result)
     {
         bool flag = Singleton<StageController>.Instance.GetStageModel().ClassInfo.id == new LorId("SilentReverb", 1) && Singleton<StageController>.Instance.CurrentWave == 1;
-        string battleDlg = SilentReverb_ModInit.GetBattleDlg(dlgType, "BlackArgaliaRolandSay");
+        string battleDlg = GetBattleDlg(dlgType, "BlackArgaliaRolandSay");
         if (flag && battleDlg != string.Empty)
         {
             __result = battleDlg;
@@ -478,6 +491,40 @@ public class SilentReverb_ModInit : ModInitializer
             result = true;
         }
         return result;
+    }
+    public static bool Decision_Pre(BattleParryingManager.ParryingTeam teamA, BattleParryingManager.ParryingTeam teamB, BattleParryingManager __instance, ref BattleParryingManager.ParryingDecisionResult __result)
+    {
+        var teamAExist = teamA.playingCard.currentBehavior.abilityList.Exists((DiceCardAbilityBase x) => x is DiceCardAbility_SiRvImpromptuDice1);
+        var teamBExist = teamB.playingCard.currentBehavior.abilityList.Exists((DiceCardAbilityBase x) => x is DiceCardAbility_SiRvImpromptuDice1);
+
+        if (teamAExist || teamBExist)
+        {
+            __result = BattleParryingManager.ParryingDecisionResult.Draw;
+            return false;
+        }
+        return true;
+    }
+    public static bool Decision_PreBase(BattleParryingManager.ParryingTeam teamA, BattleParryingManager.ParryingTeam teamB, BattleParryingManager __instance, ref BattleParryingManager.ParryingDecisionResult __result)
+    {
+        var teamAExist = teamA.playingCard.currentBehavior.abilityList.Exists((DiceCardAbilityBase x) => x is DiceCardAbility_SiRvImpromptuDice1);
+        var teamBExist = teamB.playingCard.currentBehavior.abilityList.Exists((DiceCardAbilityBase x) => x is DiceCardAbility_SiRvImpromptuDice1);
+
+        if (teamAExist && teamBExist)
+        {
+            __result = BattleParryingManager.ParryingDecisionResult.Draw;
+            return false;
+        }
+        if (teamAExist && teamA.diceValue < teamB.diceValue)
+        {
+            __result = BattleParryingManager.ParryingDecisionResult.Draw;
+            return false;
+        }
+        if (teamBExist && teamB.diceValue < teamA.diceValue)
+        {
+            __result = BattleParryingManager.ParryingDecisionResult.Draw;
+            return false;
+        }
+        return true;
     }
 
     // Token: 0x0400001F RID: 31

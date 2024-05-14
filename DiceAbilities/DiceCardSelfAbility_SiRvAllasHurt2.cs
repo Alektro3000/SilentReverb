@@ -8,7 +8,7 @@
         {
             if (base.IsResonance() > 0)
             {
-                this.card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus
+                card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus
                 {
                     max = 3 * base.IsResonance(),
                     min = base.IsResonance()
@@ -16,7 +16,7 @@
             }
             if (base.IsResonance() == 0)
             {
-                this.card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus
+                card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus
                 {
                     power = 4
                 });

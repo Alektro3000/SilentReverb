@@ -99,7 +99,7 @@ public class DiceAttackEffect_SiRvResonate : DiceAttackEffect
     public override void Initialize(BattleUnitView self, BattleUnitView target, float destroyTime)
     {
         base.Initialize(self, target, destroyTime);
-        this.EarthQuake();
+        EarthQuake();
     }
 
     private void EarthQuake()
@@ -108,8 +108,8 @@ public class DiceAttackEffect_SiRvResonate : DiceAttackEffect
         CameraFilterPack_FX_EarthQuake cameraFilterPack_FX_EarthQuake = ((instance != null) ? instance.EffectCam.gameObject.AddComponent<CameraFilterPack_FX_EarthQuake>() : null) ?? null;
         if (cameraFilterPack_FX_EarthQuake != null)
         {
-            cameraFilterPack_FX_EarthQuake.X = this.forceX;
-            cameraFilterPack_FX_EarthQuake.Y = this.forceY;
+            cameraFilterPack_FX_EarthQuake.X = forceX;
+            cameraFilterPack_FX_EarthQuake.Y = forceY;
             cameraFilterPack_FX_EarthQuake.Speed = 50f;
         }
         BattleCamManager instance2 = SingletonBehavior<BattleCamManager>.Instance;

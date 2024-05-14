@@ -7,9 +7,9 @@
         public override void BeforeRollDice()
         {
             base.BeforeRollDice();
-            if (this.behavior != null && base.card.target != null && base.card.target.bufListDetail.GetReadyBuf(KeywordBuf.Vibrate) == null)
+            if (behavior != null && base.card.target != null && base.card.target.bufListDetail.GetReadyBuf(KeywordBuf.Vibrate) == null)
             {
-                this.behavior.ApplyDiceStatBonus(new DiceStatBonus
+                behavior.ApplyDiceStatBonus(new DiceStatBonus
                 {
                     power = 3
                 });

@@ -6,12 +6,12 @@
         // Token: 0x060000AB RID: 171 RVA: 0x00003E04 File Offset: 0x00002004
         public override void OnUseCard()
         {
-            this.card.AddDiceAdder(DiceMatch.LastDice, 2 * BattleObjectManager.instance.GetAliveList((base.owner.faction == Faction.Player) ? Faction.Enemy : Faction.Player).Count);
+            card.AddDiceAdder(DiceMatch.LastDice, 2 * BattleObjectManager.instance.GetAliveList((base.owner.faction == Faction.Player) ? Faction.Enemy : Faction.Player).Count);
             foreach (BattleUnitModel battleUnitModel in BattleObjectManager.instance.GetAliveList((base.owner.faction == Faction.Player) ? Faction.Enemy : Faction.Player))
             {
                 if (battleUnitModel.bufListDetail.GetActivatedBuf(KeywordBuf.Vibrate) != null && battleUnitModel.bufListDetail.GetActivatedBuf(KeywordBuf.Vibrate).stack >= 5)
                 {
-                    this.card.ApplyDiceStatBonus(DiceMatch.LastDice, new DiceStatBonus
+                    card.ApplyDiceStatBonus(DiceMatch.LastDice, new DiceStatBonus
                     {
                         min = 4
                     });
@@ -24,7 +24,7 @@
                     return;
                 }
             }
-            this.card.ApplyDiceStatBonus(DiceMatch.LastDice, new DiceStatBonus
+            card.ApplyDiceStatBonus(DiceMatch.LastDice, new DiceStatBonus
             {
                 min = 20
             });

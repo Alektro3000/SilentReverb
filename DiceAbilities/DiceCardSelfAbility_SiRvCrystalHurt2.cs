@@ -8,15 +8,15 @@
         {
             if (base.IsResonance() > 0)
             {
-                this.card.GetDiceBehaviorList()[0].behaviourInCard.ActionScript = "BlackReverbDualWield";
+                card.GetDiceBehaviorList()[0].behaviourInCard.ActionScript = "BlackReverbDualWield";
             }
-            this.card.ApplyDiceStatBonus(DiceMatch.AllAttackDice, new DiceStatBonus
+            card.ApplyDiceStatBonus(DiceMatch.AllAttackDice, new DiceStatBonus
             {
-                breakDmg = base.IsResonance() * 16 * this.card.target.bufListDetail.GetKewordBufStack(KeywordBuf.Vibrate)
+                breakDmg = base.IsResonance() * 16 * card.target.bufListDetail.GetKewordBufStack(KeywordBuf.Vibrate)
             });
             if (base.IsResonance() == 0)
             {
-                this.card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_SiRvAdd3PoorAtk());
+                card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_SiRvAdd3PoorAtk());
             }
         }
     }

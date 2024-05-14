@@ -10,18 +10,18 @@ namespace SilentReverbMod
         // Token: 0x0600008D RID: 141 RVA: 0x00003BC8 File Offset: 0x00001DC8
         public override void OnUseCard()
         {
-            if (this.card.target == null)
+            if (card.target == null)
             {
                 return;
             }
             for (int i = 0; i < base.IsResonance(); i++)
             {
-                this.card.target.allyCardDetail.AddNewCard(new LorId("SilentReverb", 43), false);
+                card.target.allyCardDetail.AddNewCard(new LorId("SilentReverb", 43), false);
             }
             List<BehaviourDetail> list = new List<BehaviourDetail>();
-            int resistValue = this.GetResistValue(BehaviourDetail.Slash);
-            int resistValue2 = this.GetResistValue(BehaviourDetail.Penetrate);
-            int resistValue3 = this.GetResistValue(BehaviourDetail.Hit);
+            int resistValue = GetResistValue(BehaviourDetail.Slash);
+            int resistValue2 = GetResistValue(BehaviourDetail.Penetrate);
+            int resistValue3 = GetResistValue(BehaviourDetail.Hit);
             int num = resistValue;
             if (resistValue2 > num)
             {
@@ -44,7 +44,7 @@ namespace SilentReverbMod
                 list.Add(BehaviourDetail.Hit);
             }
             BehaviourDetail detail = RandomUtil.SelectOne<BehaviourDetail>(list);
-            foreach (BattleDiceBehavior battleDiceBehavior in this.card.GetDiceBehaviorList())
+            foreach (BattleDiceBehavior battleDiceBehavior in card.GetDiceBehaviorList())
             {
                 if (base.IsAttackDice(battleDiceBehavior.behaviourInCard.Detail))
                 {
@@ -57,7 +57,7 @@ namespace SilentReverbMod
         // Token: 0x0600008E RID: 142 RVA: 0x00003CF4 File Offset: 0x00001EF4
         private int GetResistValue(BehaviourDetail detail)
         {
-            return Mathf.RoundToInt((0f + BookModel.GetResistRate(this.card.target.Book.GetResistHP(detail)) + BookModel.GetResistRate(this.card.target.Book.GetResistBP(detail))) * 10f);
+            return Mathf.RoundToInt((0f + BookModel.GetResistRate(card.target.Book.GetResistHP(detail)) + BookModel.GetResistRate(card.target.Book.GetResistBP(detail))) * 10f);
         }
 
         // Token: 0x0600008F RID: 143 RVA: 0x00002145 File Offset: 0x00000345

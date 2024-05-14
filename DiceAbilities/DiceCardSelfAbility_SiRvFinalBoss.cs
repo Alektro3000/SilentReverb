@@ -9,7 +9,7 @@
             base.OnUseCard();
             if (base.IsResonance() != 0)
             {
-                this.card.target.bufListDetail.AddBuf(new BattleUnitBuf_SilentFinalPlus
+                card.target.bufListDetail.AddBuf(new BattleUnitBuf_SilentFinalPlus
                 {
                     stack = base.IsResonance()
                 });

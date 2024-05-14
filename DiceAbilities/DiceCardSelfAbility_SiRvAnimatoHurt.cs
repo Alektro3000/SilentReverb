@@ -8,8 +8,8 @@
         {
             if (base.IsResonance() == 0)
             {
-                this.card.ignorePower = true;
-                BattleUnitModel target = this.card.target;
+                card.ignorePower = true;
+                BattleUnitModel target = card.target;
                 if (target != null && target.currentDiceAction != null)
                 {
                     target.currentDiceAction.ignorePower = true;

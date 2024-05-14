@@ -8,14 +8,14 @@
         {
             for (int i = 0; i < base.IsResonance(); i++)
             {
-                this.card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus
+                card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus
                 {
                     min = 5 * base.IsResonance()
                 });
             }
             if (base.IsResonance() == 0)
             {
-                this.card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_SiRvAtk3Vibrate());
+                card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_SiRvAtk3Vibrate());
             }
         }
     }

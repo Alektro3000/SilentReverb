@@ -20,7 +20,7 @@
         {
             if (base.IsResonance() == 0)
             {
-                this.card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus
+                card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus
                 {
                     max = 3
                 });

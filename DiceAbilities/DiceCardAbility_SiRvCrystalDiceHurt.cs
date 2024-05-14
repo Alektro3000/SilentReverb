@@ -15,7 +15,7 @@
         // Token: 0x0600021F RID: 543 RVA: 0x00002558 File Offset: 0x00000758
         public override void BeforeRollDice()
         {
-            this.behavior.ApplyDiceStatBonus(new DiceStatBonus
+            behavior.ApplyDiceStatBonus(new DiceStatBonus
             {
                 dmgRate = -50,
                 breakRate = 100

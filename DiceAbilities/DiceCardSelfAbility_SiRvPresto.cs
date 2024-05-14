@@ -18,14 +18,14 @@ namespace SilentReverbMod
             // Token: 0x06000247 RID: 583 RVA: 0x000024EB File Offset: 0x000006EB
             public override void OnRoundEnd()
             {
-                this.Destroy();
+                Destroy();
             }
 
             // Token: 0x06000248 RID: 584 RVA: 0x0000C2B4 File Offset: 0x0000A4B4
             public override void OnRollSpeedDice()
             {
                 int num = 8;
-                foreach (SpeedDice speedDice in this._owner.speedDiceResult)
+                foreach (SpeedDice speedDice in _owner.speedDiceResult)
                 {
                     if (speedDice.value != num)
                     {

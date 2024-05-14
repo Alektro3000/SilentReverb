@@ -33,7 +33,7 @@
         // Token: 0x0600017F RID: 383 RVA: 0x00002BC8 File Offset: 0x00000DC8
         public override void OnUseCard()
         {
-            this.card.AddDiceAdder(DiceMatch.LastDice, 4 * BattleObjectManager.instance.GetAliveList((base.owner.faction == Faction.Player) ? Faction.Enemy : Faction.Player).Count);
+            card.AddDiceAdder(DiceMatch.LastDice, 4 * BattleObjectManager.instance.GetAliveList((base.owner.faction == Faction.Player) ? Faction.Enemy : Faction.Player).Count);
         }
     }
 }

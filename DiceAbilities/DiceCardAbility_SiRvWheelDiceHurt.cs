@@ -8,8 +8,8 @@
         {
             if (base.Resonance() == 0 && base.card != null && base.card.target != null)
             {
-                base.card.target.TakeDamage(this.behavior.DiceResultValue * 5, DamageType.Card_Ability, null, KeywordBuf.None);
-                base.card.target.TakeBreakDamage(this.behavior.DiceResultValue * 5, DamageType.Card_Ability, null, AtkResist.Normal, KeywordBuf.None);
+                base.card.target.TakeDamage(behavior.DiceResultValue * 5, DamageType.Card_Ability, null, KeywordBuf.None);
+                base.card.target.TakeBreakDamage(behavior.DiceResultValue * 5, DamageType.Card_Ability, null, AtkResist.Normal, KeywordBuf.None);
             }
         }
 
@@ -18,7 +18,7 @@
         {
             if (base.Resonance() > 0)
             {
-                this.behavior.ApplyDiceStatBonus(new DiceStatBonus
+                behavior.ApplyDiceStatBonus(new DiceStatBonus
                 {
                     dmgRate = 100 * base.Resonance(),
                     breakDmg = 100 * base.Resonance()

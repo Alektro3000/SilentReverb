@@ -33,7 +33,7 @@ namespace SilentReverbMod
         {
             if (base.Resonance() > 0)
             {
-                this.behavior.ApplyDiceStatBonus(new DiceStatBonus
+                behavior.ApplyDiceStatBonus(new DiceStatBonus
                 {
                     dmgRate = 100 * base.Resonance(),
                     breakDmg = 100 * base.Resonance()

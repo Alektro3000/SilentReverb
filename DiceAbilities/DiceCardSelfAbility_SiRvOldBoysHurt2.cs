@@ -13,8 +13,8 @@
             }
             if (base.IsResonance() == 0)
             {
-                this.card.owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.Protection, 4, base.owner);
-                this.card.owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.BreakProtection, 4, base.owner);
+                card.owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.Protection, 4, base.owner);
+                card.owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.BreakProtection, 4, base.owner);
             }
         }
 

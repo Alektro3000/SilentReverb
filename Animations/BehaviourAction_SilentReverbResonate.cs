@@ -16,8 +16,8 @@ public class BehaviourAction_SilentReverbResonate : BehaviourActionBase
         {
             return base.GetMovingAction(ref self, ref opponent);
         }
-        this._self = self.view.model;
-        this._opponent = opponent.view.model;
+        _self = self.view.model;
+        _opponent = opponent.view.model;
         List<RencounterManager.MovingAction> list = new List<RencounterManager.MovingAction>();
         RencounterManager.MovingAction movingAction = new RencounterManager.MovingAction(ActionDetail.Hit2, CharMoveState.MoveForward, 2f, true, 0.5f, 1f);
         movingAction.customEffectRes = "SiRv_Resonate";
@@ -61,16 +61,16 @@ public class BehaviourAction_SilentReverbResonate : BehaviourActionBase
     // Token: 0x06000131 RID: 305 RVA: 0x00007204 File Offset: 0x00005404
     private bool MoveUpSelf(float deltaTime)
     {
-        if (this._elapsedMovUpSelf < Mathf.Epsilon)
+        if (_elapsedMovUpSelf < Mathf.Epsilon)
         {
-            this.teleportSrc = this._self.view.WorldPosition;
-            this.teleportDst = this._self.view.WorldPosition + new Vector3(0f, this._yOffset + 1.5f, 0f);
+            teleportSrc = _self.view.WorldPosition;
+            teleportDst = _self.view.WorldPosition + new Vector3(0f, _yOffset + 1.5f, 0f);
         }
         bool result = false;
-        this._elapsedMovUpSelf += deltaTime * this._prefab.moveUpSelfSpeed;
-        float t = this._prefab.moveUpSelfCurve.Evaluate(this._elapsedMovUpSelf);
-        this._self.view.WorldPosition = Vector3.Lerp(this.teleportSrc, this.teleportDst, t);
-        if (this._elapsedMovUpSelf > 1f)
+        _elapsedMovUpSelf += deltaTime * _prefab.moveUpSelfSpeed;
+        float t = _prefab.moveUpSelfCurve.Evaluate(_elapsedMovUpSelf);
+        _self.view.WorldPosition = Vector3.Lerp(teleportSrc, teleportDst, t);
+        if (_elapsedMovUpSelf > 1f)
         {
             result = true;
         }
@@ -81,10 +81,10 @@ public class BehaviourAction_SilentReverbResonate : BehaviourActionBase
     private bool DownAttackSelf(float deltaTime)
     {
         bool result = false;
-        this._elapsedDownAtk += deltaTime * this._prefab.downAtkSelfSpeed;
-        float t = this._prefab.downAtkSelfCurve.Evaluate(this._elapsedDownAtk);
-        this._self.view.WorldPosition = Vector3.Lerp(this._self.view.WorldPosition, this.teleportSrc, t);
-        if (this._elapsedDownAtk > 1f)
+        _elapsedDownAtk += deltaTime * _prefab.downAtkSelfSpeed;
+        float t = _prefab.downAtkSelfCurve.Evaluate(_elapsedDownAtk);
+        _self.view.WorldPosition = Vector3.Lerp(_self.view.WorldPosition, teleportSrc, t);
+        if (_elapsedDownAtk > 1f)
         {
             result = true;
         }
@@ -94,28 +94,28 @@ public class BehaviourAction_SilentReverbResonate : BehaviourActionBase
     // Token: 0x06000133 RID: 307 RVA: 0x0000734C File Offset: 0x0000554C
     private bool AirbornedOpponent(float deltaTime)
     {
-        if (this._elapsedAirborne < Mathf.Epsilon)
+        if (_elapsedAirborne < Mathf.Epsilon)
         {
-            this.originPos = this._opponent.view.WorldPosition;
-            this._opponent.view.WorldPosition = this.originPos + new Vector3(0f, 1f, 0f);
+            originPos = _opponent.view.WorldPosition;
+            _opponent.view.WorldPosition = originPos + new Vector3(0f, 1f, 0f);
         }
-        this._elapsedAirborne += deltaTime * this._prefab.airbornedOpponentSpeed;
-        return this._elapsedAirborne >= 1f;
+        _elapsedAirborne += deltaTime * _prefab.airbornedOpponentSpeed;
+        return _elapsedAirborne >= 1f;
     }
 
     // Token: 0x06000134 RID: 308 RVA: 0x000073D8 File Offset: 0x000055D8
     private bool MoveUpOpponent(float deltaTime)
     {
-        if (this._elapsedMoveUpOpponent < Mathf.Epsilon)
+        if (_elapsedMoveUpOpponent < Mathf.Epsilon)
         {
-            this.airborneSrc = this._opponent.view.WorldPosition;
-            this.airborneDst = this._opponent.view.WorldPosition + new Vector3(0f, this._yOffset, 0f);
+            airborneSrc = _opponent.view.WorldPosition;
+            airborneDst = _opponent.view.WorldPosition + new Vector3(0f, _yOffset, 0f);
         }
         bool result = false;
-        float t = this._prefab.airbornedOpponentCurve.Evaluate(this._elapsedMoveUpOpponent);
-        this._opponent.view.WorldPosition = Vector3.Lerp(this.airborneSrc, this.airborneDst, t);
-        this._elapsedMoveUpOpponent += deltaTime * this._prefab.moveUpOpponentSpeed;
-        if (this._elapsedMoveUpOpponent > 1f)
+        float t = _prefab.airbornedOpponentCurve.Evaluate(_elapsedMoveUpOpponent);
+        _opponent.view.WorldPosition = Vector3.Lerp(airborneSrc, airborneDst, t);
+        _elapsedMoveUpOpponent += deltaTime * _prefab.moveUpOpponentSpeed;
+        if (_elapsedMoveUpOpponent > 1f)
         {
             result = true;
         }
@@ -125,20 +125,20 @@ public class BehaviourAction_SilentReverbResonate : BehaviourActionBase
     // Token: 0x06000135 RID: 309 RVA: 0x000074A0 File Offset: 0x000056A0
     private bool KnockdownOpponent(float deltaTime)
     {
-        if (this._elapsedKnockdown < Mathf.Epsilon)
+        if (_elapsedKnockdown < Mathf.Epsilon)
         {
-            this.knockdownSrc = this._opponent.view.WorldPosition;
-            this.knockdownDst = this.originPos;
+            knockdownSrc = _opponent.view.WorldPosition;
+            knockdownDst = originPos;
         }
         bool result = false;
-        this._elapsedKnockdown += deltaTime * this._prefab.knockdownOpponentSpeed;
-        float t = this._prefab.knockdownOpponentCurve.Evaluate(this._elapsedKnockdown);
-        this._opponent.view.WorldPosition = Vector3.Lerp(this.knockdownSrc, this.knockdownDst, t);
-        if (this._elapsedKnockdown > 1f)
+        _elapsedKnockdown += deltaTime * _prefab.knockdownOpponentSpeed;
+        float t = _prefab.knockdownOpponentCurve.Evaluate(_elapsedKnockdown);
+        _opponent.view.WorldPosition = Vector3.Lerp(knockdownSrc, knockdownDst, t);
+        if (_elapsedKnockdown > 1f)
         {
             result = true;
-            this._self.view.LockPosY(true);
-            this._opponent.view.LockPosY(true);
+            _self.view.LockPosY(true);
+            _opponent.view.LockPosY(true);
         }
         return result;
     }

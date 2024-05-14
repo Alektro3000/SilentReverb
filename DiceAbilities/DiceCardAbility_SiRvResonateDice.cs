@@ -7,12 +7,12 @@
         public override void BeforeRollDice()
         {
             base.BeforeRollDice();
-            int num = base.Resonance();
+            int num = Resonance();
             if (num <= 0)
             {
                 return;
             }
-            this.behavior.ApplyDiceStatBonus(new DiceStatBonus
+            behavior.ApplyDiceStatBonus(new DiceStatBonus
             {
                 min = num * 2,
                 max = num * 2

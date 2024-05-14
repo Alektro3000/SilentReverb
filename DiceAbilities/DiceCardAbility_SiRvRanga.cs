@@ -9,7 +9,7 @@
             base.BeforeRollDice();
             if (base.Resonance() > 0)
             {
-                this.behavior.ApplyDiceStatBonus(new DiceStatBonus
+                behavior.ApplyDiceStatBonus(new DiceStatBonus
                 {
                     min = base.Resonance() * 2
                 });

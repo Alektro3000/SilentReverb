@@ -26,28 +26,28 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
         }
         if (self.result == Result.Win && !flag)
         {
-            this._self = self.view.model;
-            this._target = opponent.view.model;
+            _self = self.view.model;
+            _target = opponent.view.model;
             List<RencounterManager.MovingAction> list = new List<RencounterManager.MovingAction>();
             List<RencounterManager.MovingAction> list2 = new List<RencounterManager.MovingAction>();
             if (opponent.infoList.Count > 0)
             {
                 opponent.infoList.Clear();
             }
-            this.SetShotgun(list, list2);
-            this.SetLance(list, list2);
-            this.SetAxe(list, list2);
-            this.SetMace(list, list2);
-            this.SetHammer(list, list2);
-            this.SetLongSword(list, list2);
-            this.SetDualWield(list, list2);
-            this.SetGreatSword(list, list2);
-            this.SetGauntlet(list, list2);
-            this.SetShortSword(list, list2);
-            this.SetScythe1(list, list2);
-            this.SetScythe2(list, list2);
-            this.SetRevolver(list, list2);
-            this.SetFinal(list, list2);
+            SetShotgun(list, list2);
+            SetLance(list, list2);
+            SetAxe(list, list2);
+            SetMace(list, list2);
+            SetHammer(list, list2);
+            SetLongSword(list, list2);
+            SetDualWield(list, list2);
+            SetGreatSword(list, list2);
+            SetGauntlet(list, list2);
+            SetShortSword(list, list2);
+            SetScythe1(list, list2);
+            SetScythe2(list, list2);
+            SetRevolver(list, list2);
+            SetFinal(list, list2);
             opponent.infoList = list2;
             return list;
         }
@@ -71,7 +71,7 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     private void SetLance(List<RencounterManager.MovingAction> self, List<RencounterManager.MovingAction> oppo)
     {
         RencounterManager.MovingAction movingAction = new RencounterManager.MovingAction(ActionDetail.Penetrate, CharMoveState.Custom, 1f, false, 0f, 1f);
-        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveLance));
+        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveLance));
         movingAction.customEffectRes = "BlackSilence_Z";
         movingAction.SetEffectTiming(EffectTiming.PRE, EffectTiming.NONE, EffectTiming.WITHOUT_DMGTEXT);
         RencounterManager.MovingAction movingAction2 = new RencounterManager.MovingAction(ActionDetail.Penetrate, CharMoveState.Stop, 0f, false, 0.3f, 1f);
@@ -113,7 +113,7 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
         movingAction.customEffectRes = "SiRv_Hammer";
         movingAction.SetEffectTiming(EffectTiming.PRE, EffectTiming.NONE, EffectTiming.WITHOUT_DMGTEXT);
         RencounterManager.MovingAction movingAction2 = new RencounterManager.MovingAction(ActionDetail.Move, CharMoveState.Custom, 6f, true, 0.1f, 1f);
-        movingAction2.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveAfterHammer));
+        movingAction2.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveAfterHammer));
         movingAction2.SetEffectTiming(EffectTiming.NOT_PRINT, EffectTiming.NOT_PRINT, EffectTiming.NOT_PRINT);
         self.Add(movingAction);
         self.Add(movingAction2);
@@ -134,7 +134,7 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
         RencounterManager.MovingAction movingAction2 = new RencounterManager.MovingAction(ActionDetail.S4, CharMoveState.Stop, 0f, false, 0.3f, 1f);
         movingAction2.SetEffectTiming(EffectTiming.NOT_PRINT, EffectTiming.NOT_PRINT, EffectTiming.NOT_PRINT);
         RencounterManager.MovingAction item = new RencounterManager.MovingAction(ActionDetail.Move, CharMoveState.Custom, 1f, true, 0.015f, 1f);
-        movingAction2.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveAfterHammer));
+        movingAction2.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveAfterHammer));
         self.Add(movingAction);
         self.Add(movingAction2);
         self.Add(item);
@@ -150,7 +150,7 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     private void SetDualWield(List<RencounterManager.MovingAction> self, List<RencounterManager.MovingAction> oppo)
     {
         RencounterManager.MovingAction movingAction = new RencounterManager.MovingAction(ActionDetail.Slash, CharMoveState.Custom, 0f, false, 0.01f, 1f);
-        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveDualWield));
+        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveDualWield));
         movingAction.customEffectRes = "FX_PC_RolRang_XSlash_Main_NoUnAtk";
         movingAction.SetEffectTiming(EffectTiming.PRE, EffectTiming.NONE, EffectTiming.WITHOUT_DMGTEXT);
         RencounterManager.MovingAction movingAction2 = new RencounterManager.MovingAction(ActionDetail.Slash, CharMoveState.Stop, 0f, false, 0.5f, 1f);
@@ -167,7 +167,7 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     private void SetShortSword(List<RencounterManager.MovingAction> self, List<RencounterManager.MovingAction> oppo)
     {
         RencounterManager.MovingAction movingAction = new RencounterManager.MovingAction(ActionDetail.S7, CharMoveState.Custom, 1f, false, 0.2f, 1f);
-        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveShortSword));
+        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveShortSword));
         movingAction.customEffectRes = "FX_PC_RolRang_Dagger";
         movingAction.SetEffectTiming(EffectTiming.PRE, EffectTiming.NONE, EffectTiming.WITHOUT_DMGTEXT);
         self.Add(movingAction);
@@ -190,11 +190,11 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     private void SetGauntlet(List<RencounterManager.MovingAction> self, List<RencounterManager.MovingAction> oppo)
     {
         RencounterManager.MovingAction movingAction = new RencounterManager.MovingAction(ActionDetail.S5, CharMoveState.Custom, 1f, false, 0.4f, 1f);
-        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveGauntlet1));
+        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveGauntlet1));
         movingAction.customEffectRes = "SiRv_Ranga1";
         movingAction.SetEffectTiming(EffectTiming.PRE, EffectTiming.NONE, EffectTiming.WITHOUT_DMGTEXT);
         RencounterManager.MovingAction movingAction2 = new RencounterManager.MovingAction(ActionDetail.S6, CharMoveState.Custom, 1f, false, 0.4f, 1f);
-        movingAction2.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveGauntlet2));
+        movingAction2.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveGauntlet2));
         movingAction2.customEffectRes = "SiRv_Ranga2";
         movingAction2.SetEffectTiming(EffectTiming.PRE, EffectTiming.NONE, EffectTiming.WITHOUT_DMGTEXT);
         self.Add(movingAction);
@@ -264,12 +264,12 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     private void SetFinal(List<RencounterManager.MovingAction> self, List<RencounterManager.MovingAction> oppo)
     {
         RencounterManager.MovingAction movingAction = new RencounterManager.MovingAction(ActionDetail.Move, CharMoveState.Custom, 0f, true, 0.01f, 1f);
-        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveFinal1));
+        movingAction.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveFinal1));
         RencounterManager.MovingAction movingAction2 = new RencounterManager.MovingAction(ActionDetail.S15, CharMoveState.Stop, 0f, true, 0.5f, 1f);
         movingAction2.customEffectRes = "FX_Mon_Argalia_Slash_H";
         movingAction2.SetEffectTiming(EffectTiming.PRE, EffectTiming.NONE, EffectTiming.WITHOUT_DMGTEXT);
         RencounterManager.MovingAction movingAction3 = new RencounterManager.MovingAction(ActionDetail.S13, CharMoveState.Custom, 0f, false, 0.01f, 1f);
-        movingAction3.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(this.MoveFinal2));
+        movingAction3.SetCustomMoving(new RencounterManager.MovingAction.MoveCustomEvent(MoveFinal2));
         movingAction3.customEffectRes = "FX_Mon_Argalia_Slash_Up";
         movingAction3.SetEffectTiming(EffectTiming.PRE, EffectTiming.NOT_PRINT, EffectTiming.WITHOUT_DMGTEXT);
         RencounterManager.MovingAction movingAction4 = new RencounterManager.MovingAction(ActionDetail.S13, CharMoveState.Stop, 0f, false, 0.5f, 1f);
@@ -297,26 +297,26 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     // Token: 0x060001AB RID: 427 RVA: 0x00009160 File Offset: 0x00007360
     private bool MoveLance(float deltaTime)
     {
-        if (this._target == null)
+        if (_target == null)
         {
             return true;
         }
         bool result = false;
-        if (!this._bMovedLance)
+        if (!_bMovedLance)
         {
-            Vector3 worldPosition = this._target.view.WorldPosition;
-            float x = this._target.view.transform.localScale.x;
+            Vector3 worldPosition = _target.view.WorldPosition;
+            float x = _target.view.transform.localScale.x;
             float num = SingletonBehavior<HexagonalMapManager>.Instance.tileSize * x + 6f;
             int num2 = 1;
-            if (this._self.view.WorldPosition.x < this._target.view.WorldPosition.x)
+            if (_self.view.WorldPosition.x < _target.view.WorldPosition.x)
             {
                 num2 = -1;
             }
             Vector3 pos = worldPosition - new Vector3((float)num2 * num, 0f, 0f);
-            this._self.moveDetail.Move(pos, 400f, false, true);
-            this._bMovedLance = true;
+            _self.moveDetail.Move(pos, 400f, false, true);
+            _bMovedLance = true;
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             result = true;
         }
@@ -327,21 +327,21 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     private bool MoveAfterHammer(float deltaTime)
     {
         bool result = false;
-        if (!this._bMoveAfterHammer)
+        if (!_bMoveAfterHammer)
         {
-            Vector3 worldPosition = this._target.view.WorldPosition;
-            float x = this._target.view.transform.localScale.x;
+            Vector3 worldPosition = _target.view.WorldPosition;
+            float x = _target.view.transform.localScale.x;
             float num = SingletonBehavior<HexagonalMapManager>.Instance.tileSize * x + 6f;
             int num2 = 1;
-            if (this._self.view.WorldPosition.x < this._target.view.WorldPosition.x)
+            if (_self.view.WorldPosition.x < _target.view.WorldPosition.x)
             {
                 num2 = -1;
             }
             Vector3 pos = worldPosition + new Vector3((float)num2 * num, 0f, 0f);
-            this._self.moveDetail.Move(pos, 150f, true, false);
-            this._bMoveAfterHammer = true;
+            _self.moveDetail.Move(pos, 150f, true, false);
+            _bMoveAfterHammer = true;
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             result = true;
         }
@@ -351,26 +351,26 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     // Token: 0x060001AD RID: 429 RVA: 0x00009320 File Offset: 0x00007520
     private bool MoveGauntlet1(float deltaTime)
     {
-        if (this._target == null)
+        if (_target == null)
         {
             return true;
         }
         bool result = false;
-        if (!this._bMovedGauntlet1)
+        if (!_bMovedGauntlet1)
         {
-            Vector3 worldPosition = this._target.view.WorldPosition;
-            float x = this._target.view.transform.localScale.x;
+            Vector3 worldPosition = _target.view.WorldPosition;
+            float x = _target.view.transform.localScale.x;
             float num = SingletonBehavior<HexagonalMapManager>.Instance.tileSize * x + 6f;
             int num2 = 1;
-            if (this._self.view.WorldPosition.x < this._target.view.WorldPosition.x)
+            if (_self.view.WorldPosition.x < _target.view.WorldPosition.x)
             {
                 num2 = -1;
             }
             Vector3 pos = worldPosition - new Vector3((float)num2 * num, 0f, 0f);
-            this._self.moveDetail.Move(pos, 250f, false, false);
-            this._bMovedGauntlet1 = true;
+            _self.moveDetail.Move(pos, 250f, false, false);
+            _bMovedGauntlet1 = true;
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             result = true;
         }
@@ -380,26 +380,26 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     // Token: 0x060001AE RID: 430 RVA: 0x00009404 File Offset: 0x00007604
     private bool MoveGauntlet2(float deltaTime)
     {
-        if (this._target == null)
+        if (_target == null)
         {
             return true;
         }
         bool result = false;
-        if (!this._bMoveGauntler2)
+        if (!_bMoveGauntler2)
         {
-            Vector3 worldPosition = this._target.view.WorldPosition;
-            float x = this._target.view.transform.localScale.x;
+            Vector3 worldPosition = _target.view.WorldPosition;
+            float x = _target.view.transform.localScale.x;
             float num = SingletonBehavior<HexagonalMapManager>.Instance.tileSize * x + 6f;
             int num2 = 1;
-            if (this._self.view.WorldPosition.x < this._target.view.WorldPosition.x)
+            if (_self.view.WorldPosition.x < _target.view.WorldPosition.x)
             {
                 num2 = -1;
             }
             Vector3 pos = worldPosition - new Vector3((float)num2 * num, 0f, 0f);
-            this._self.moveDetail.Move(pos, 250f, false, false);
-            this._bMoveGauntler2 = true;
+            _self.moveDetail.Move(pos, 250f, false, false);
+            _bMoveGauntler2 = true;
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             result = true;
         }
@@ -409,26 +409,26 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     // Token: 0x060001AF RID: 431 RVA: 0x000094E8 File Offset: 0x000076E8
     private bool MoveShortSword(float deltaTime)
     {
-        if (this._target == null)
+        if (_target == null)
         {
             return true;
         }
         bool result = false;
-        if (!this._bMovedShortSword)
+        if (!_bMovedShortSword)
         {
-            Vector3 worldPosition = this._target.view.WorldPosition;
-            float x = this._target.view.transform.localScale.x;
+            Vector3 worldPosition = _target.view.WorldPosition;
+            float x = _target.view.transform.localScale.x;
             float num = SingletonBehavior<HexagonalMapManager>.Instance.tileSize * x + 6f;
             int num2 = 1;
-            if (this._self.view.WorldPosition.x < this._target.view.WorldPosition.x)
+            if (_self.view.WorldPosition.x < _target.view.WorldPosition.x)
             {
                 num2 = -1;
             }
             Vector3 pos = worldPosition - new Vector3((float)num2 * num, 0f, 0f);
-            this._self.moveDetail.Move(pos, 250f, false, false);
-            this._bMovedShortSword = true;
+            _self.moveDetail.Move(pos, 250f, false, false);
+            _bMovedShortSword = true;
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             result = true;
         }
@@ -438,26 +438,26 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     // Token: 0x060001B0 RID: 432 RVA: 0x000095CC File Offset: 0x000077CC
     private bool MoveDualWield(float deltaTime)
     {
-        if (this._target == null)
+        if (_target == null)
         {
             return true;
         }
         bool result = false;
-        if (!this._bMoveDualWield)
+        if (!_bMoveDualWield)
         {
-            Vector3 worldPosition = this._target.view.WorldPosition;
-            float x = this._target.view.transform.localScale.x;
+            Vector3 worldPosition = _target.view.WorldPosition;
+            float x = _target.view.transform.localScale.x;
             float num = SingletonBehavior<HexagonalMapManager>.Instance.tileSize * x + 12f;
             int num2 = 1;
-            if (this._self.view.WorldPosition.x < this._target.view.WorldPosition.x)
+            if (_self.view.WorldPosition.x < _target.view.WorldPosition.x)
             {
                 num2 = -1;
             }
             Vector3 pos = worldPosition - new Vector3((float)num2 * num, 0f, 0f);
-            this._self.moveDetail.Move(pos, 250f, false, false);
-            this._bMoveDualWield = true;
+            _self.moveDetail.Move(pos, 250f, false, false);
+            _bMoveDualWield = true;
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             result = true;
         }
@@ -467,26 +467,26 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     // Token: 0x060001B1 RID: 433 RVA: 0x000096B0 File Offset: 0x000078B0
     private bool MoveFinal1(float deltaTime)
     {
-        if (this._target == null)
+        if (_target == null)
         {
             return true;
         }
         bool result = false;
-        if (!this._bMoveFinal1)
+        if (!_bMoveFinal1)
         {
-            Vector3 worldPosition = this._target.view.WorldPosition;
-            float x = this._target.view.transform.localScale.x;
+            Vector3 worldPosition = _target.view.WorldPosition;
+            float x = _target.view.transform.localScale.x;
             float num = SingletonBehavior<HexagonalMapManager>.Instance.tileSize * x + 6f;
             int num2 = 1;
-            if (this._self.view.WorldPosition.x < this._target.view.WorldPosition.x)
+            if (_self.view.WorldPosition.x < _target.view.WorldPosition.x)
             {
                 num2 = -1;
             }
             Vector3 pos = worldPosition + new Vector3((float)num2 * num, 0f, 0f);
-            this._self.moveDetail.Move(pos, 250f, false, false);
-            this._bMoveFinal1 = true;
+            _self.moveDetail.Move(pos, 250f, false, false);
+            _bMoveFinal1 = true;
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             result = true;
         }
@@ -496,26 +496,26 @@ public class BehaviourAction_BlackReverbFurioso : BehaviourActionBase
     // Token: 0x060001B2 RID: 434 RVA: 0x00009794 File Offset: 0x00007994
     private bool MoveFinal2(float deltaTime)
     {
-        if (this._target == null)
+        if (_target == null)
         {
             return true;
         }
         bool result = false;
-        if (!this._bMoveFinal2)
+        if (!_bMoveFinal2)
         {
-            Vector3 worldPosition = this._target.view.WorldPosition;
-            float x = this._target.view.transform.localScale.x;
+            Vector3 worldPosition = _target.view.WorldPosition;
+            float x = _target.view.transform.localScale.x;
             float num = SingletonBehavior<HexagonalMapManager>.Instance.tileSize * x + 6f;
             int num2 = 1;
-            if (this._self.view.WorldPosition.x < this._target.view.WorldPosition.x)
+            if (_self.view.WorldPosition.x < _target.view.WorldPosition.x)
             {
                 num2 = -1;
             }
             Vector3 pos = worldPosition - new Vector3((float)num2 * num, 0f, 0f);
-            this._self.moveDetail.Move(pos, 250f, false, false);
-            this._bMoveFinal2 = true;
+            _self.moveDetail.Move(pos, 250f, false, false);
+            _bMoveFinal2 = true;
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             result = true;
         }

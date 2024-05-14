@@ -13,7 +13,17 @@ namespace SilentReverbMod
             {
                 return 0;
             }
-            return (passiveAbilityBase as PassiveAbility_SilentReverb).IsResonance(this.card, this.card.target);
+            return (passiveAbilityBase as PassiveAbility_SilentReverb).IsResonance(card, card.target);
+        }
+        // Token: 0x0600002B RID: 43 RVA: 0x00003600 File Offset: 0x00001800
+        public int GetVibrations()
+        {
+            PassiveAbilityBase passiveAbilityBase = base.owner.passiveDetail.PassiveList.Find((PassiveAbilityBase x) => x is PassiveAbility_SilentReverb);
+            if (passiveAbilityBase == null)
+            {
+                return 0;
+            }
+            return (passiveAbilityBase as PassiveAbility_SilentReverb).IsResonance(card, card.target);
         }
         public int GetUniqueCardCount()
         {

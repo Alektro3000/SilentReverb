@@ -21,7 +21,7 @@ namespace SilentReverbMod
                 battleDiceBehavior.SetIndex(num++);
                 list.Add(battleDiceBehavior);
             }
-            this.owner.cardSlotDetail.keepCard.AddBehaviours(cardItem, list);
+            owner.cardSlotDetail.keepCard.AddBehaviours(cardItem, list);
         }
     }
 }

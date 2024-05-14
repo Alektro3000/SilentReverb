@@ -7,10 +7,10 @@
         public override void AfterAction()
         {
             base.AfterAction();
-            if (this.count == 0 && base.Resonance() == 0)
+            if (count == 0 && base.Resonance() == 0)
             {
                 base.ActivateBonusAttackDice();
-                this.count++;
+                count++;
             }
         }
 

@@ -22,40 +22,40 @@ public class FarAreaeffect_SiRvArgaliaAreaEx : FarAreaEffect
     public override void Init(BattleUnitModel self, params object[] args)
     {
         base.Init(self, args);
-        this._victimList = new List<BattleFarAreaPlayManager.VictimInfo>();
-        this._elapsedEndAtk = 0f;
-        this._elapsedAtkOneTarget = 0f;
-        this.OnEffectStart();
-        this._trailObject = Util.LoadPrefab("Battle/SpecialEffect/ArgaliaSpecialAreaEffect", base.transform);
-        this._trailObject.transform.localPosition = Vector3.zero;
-        this._self.view.charAppearance.ChangeMotion(ActionDetail.Default);
+        _victimList = new List<BattleFarAreaPlayManager.VictimInfo>();
+        _elapsedEndAtk = 0f;
+        _elapsedAtkOneTarget = 0f;
+        OnEffectStart();
+        _trailObject = Util.LoadPrefab("Battle/SpecialEffect/ArgaliaSpecialAreaEffect", base.transform);
+        _trailObject.transform.localPosition = Vector3.zero;
+        _self.view.charAppearance.ChangeMotion(ActionDetail.Default);
         List<BattleUnitModel> list = new List<BattleUnitModel>();
         list.AddRange(BattleObjectManager.instance.GetAliveList((self.faction == Faction.Enemy) ? Faction.Player : Faction.Enemy));
         SingletonBehavior<BattleCamManager>.Instance.FollowUnits(false, list);
-        this._sign = ((UnityEngine.Random.Range(0f, 1f) > 0.5f) ? 1 : -1);
-        this._dstPosAtkOneTarget = Vector3.zero;
-        this._srcPosAtkOneTarget = Vector3.zero;
+        _sign = ((UnityEngine.Random.Range(0f, 1f) > 0.5f) ? 1 : -1);
+        _dstPosAtkOneTarget = Vector3.zero;
+        _srcPosAtkOneTarget = Vector3.zero;
     }
 
     // Token: 0x0600014E RID: 334 RVA: 0x00007B00 File Offset: 0x00005D00
     public override bool ActionPhase(float deltaTime, BattleUnitModel attacker, List<BattleFarAreaPlayManager.VictimInfo> victims, ref List<BattleFarAreaPlayManager.VictimInfo> defenseVictims)
     {
         bool result = false;
-        if (this._trailObject != null)
+        if (_trailObject != null)
         {
-            base.transform.position = this._self.view.atkEffectRoot.position;
+            base.transform.position = _self.view.atkEffectRoot.position;
         }
-        if (this.state == FarAreaEffect.EffectState.Start)
+        if (state == FarAreaEffect.EffectState.Start)
         {
-            if (this._self.moveDetail.isArrived)
+            if (_self.moveDetail.isArrived)
             {
-                this.state = FarAreaEffect.EffectState.GiveDamage;
-                this._victimList = new List<BattleFarAreaPlayManager.VictimInfo>(victims);
+                state = FarAreaEffect.EffectState.GiveDamage;
+                _victimList = new List<BattleFarAreaPlayManager.VictimInfo>(victims);
             }
         }
-        else if (this.state == FarAreaEffect.EffectState.GiveDamage)
+        else if (state == FarAreaEffect.EffectState.GiveDamage)
         {
-            if (this._elapsedAtkOneTarget < Mathf.Epsilon)
+            if (_elapsedAtkOneTarget < Mathf.Epsilon)
             {
                 CardRange ranged = attacker.currentDiceAction.card.GetSpec().Ranged;
                 if (ranged == CardRange.FarArea)
@@ -64,13 +64,13 @@ public class FarAreaeffect_SiRvArgaliaAreaEx : FarAreaEffect
                 }
                 else if (ranged == CardRange.FarAreaEach)
                 {
-                    List<BattleFarAreaPlayManager.VictimInfo> victimList = this._victimList;
+                    List<BattleFarAreaPlayManager.VictimInfo> victimList = _victimList;
                     if (victimList != null && victimList.Count > 0)
                     {
-                        if (this._victimList.Exists((BattleFarAreaPlayManager.VictimInfo x) => !x.unitModel.IsDead()))
+                        if (_victimList.Exists((BattleFarAreaPlayManager.VictimInfo x) => !x.unitModel.IsDead()))
                         {
                             List<BattleFarAreaPlayManager.VictimInfo> list = new List<BattleFarAreaPlayManager.VictimInfo>();
-                            foreach (BattleFarAreaPlayManager.VictimInfo victimInfo in this._victimList)
+                            foreach (BattleFarAreaPlayManager.VictimInfo victimInfo in _victimList)
                             {
                                 if (!victimInfo.unitModel.IsDead())
                                 {
@@ -81,11 +81,11 @@ public class FarAreaeffect_SiRvArgaliaAreaEx : FarAreaEffect
                             attacker.view.WorldPosition = victimInfo2.unitModel.view.WorldPosition;
                             FarAreaeffect_SiRvArgaliaAreaEx._motionCount = (FarAreaeffect_SiRvArgaliaAreaEx._motionCount + 1) % 2;
                             attacker.view.charAppearance.ChangeMotion((FarAreaeffect_SiRvArgaliaAreaEx._motionCount == 0) ? ActionDetail.Slash2 : ActionDetail.S14);
-                            this._sign = ((this._sign == 1) ? -1 : 1);
-                            Vector3 b = new Vector3(SingletonBehavior<HexagonalMapManager>.Instance.tileSize * 4f * this._self.view.transform.localScale.x / 1.5f, 0f, 0f) * (float)this._sign;
-                            this._srcPosAtkOneTarget = victimInfo2.unitModel.view.WorldPosition + b;
-                            this._dstPosAtkOneTarget = victimInfo2.unitModel.view.WorldPosition - b;
-                            attacker.view.WorldPosition = this._srcPosAtkOneTarget;
+                            _sign = ((_sign == 1) ? -1 : 1);
+                            Vector3 b = new Vector3(SingletonBehavior<HexagonalMapManager>.Instance.tileSize * 4f * _self.view.transform.localScale.x / 1.5f, 0f, 0f) * (float)_sign;
+                            _srcPosAtkOneTarget = victimInfo2.unitModel.view.WorldPosition + b;
+                            _dstPosAtkOneTarget = victimInfo2.unitModel.view.WorldPosition - b;
+                            attacker.view.WorldPosition = _srcPosAtkOneTarget;
                             attacker.UpdateDirection(victimInfo2.unitModel.view.WorldPosition);
                             string resource = (FarAreaeffect_SiRvArgaliaAreaEx._motionCount == 0) ? "FX_Mon_Argalia_Slash_Up" : "FX_Mon_Argalia_Slash_Down_Small";
                             DiceAttackEffect diceAttackEffect = SingletonBehavior<DiceEffectManager>.Instance.CreateBehaviourEffect(resource, 1f, attacker.view, victimInfo2.unitModel.view, 1f);
@@ -110,7 +110,7 @@ public class FarAreaeffect_SiRvArgaliaAreaEx : FarAreaEffect
                                     if (victimInfo2.unitModel.IsDead())
                                     {
                                         List<BattleUnitModel> list2 = new List<BattleUnitModel>();
-                                        list2.Add(this._self);
+                                        list2.Add(_self);
                                         victimInfo2.unitModel.view.DisplayDlg(DialogType.DEATH, list2);
                                     }
                                     victimInfo2.unitModel.view.charAppearance.ChangeMotion(ActionDetail.Damaged);
@@ -140,56 +140,56 @@ public class FarAreaeffect_SiRvArgaliaAreaEx : FarAreaEffect
                                 if (victimInfo2.unitModel.IsDead())
                                 {
                                     List<BattleUnitModel> list3 = new List<BattleUnitModel>();
-                                    list3.Add(this._self);
+                                    list3.Add(_self);
                                     victimInfo2.unitModel.view.DisplayDlg(DialogType.DEATH, list3);
                                 }
                                 victimInfo2.unitModel.view.charAppearance.ChangeMotion(ActionDetail.Damaged);
                             }
                             SingletonBehavior<BattleManagerUI>.Instance.ui_unitListInfoSummary.UpdateCharacterProfile(victimInfo2.unitModel, victimInfo2.unitModel.faction, victimInfo2.unitModel.hp, victimInfo2.unitModel.breakDetail.breakGauge, null);
                             SingletonBehavior<BattleManagerUI>.Instance.ui_unitListInfoSummary.UpdateCharacterProfile(attacker, attacker.faction, attacker.hp, attacker.breakDetail.breakGauge, null);
-                            this._victimList.Remove(victimInfo2);
+                            _victimList.Remove(victimInfo2);
                         }
                     }
                 }
             }
-            this._elapsedAtkOneTarget += deltaTime;
-            if (Vector3.SqrMagnitude(this._dstPosAtkOneTarget - this._srcPosAtkOneTarget) > Mathf.Epsilon)
+            _elapsedAtkOneTarget += deltaTime;
+            if (Vector3.SqrMagnitude(_dstPosAtkOneTarget - _srcPosAtkOneTarget) > Mathf.Epsilon)
             {
-                attacker.view.WorldPosition = Vector3.Lerp(this._srcPosAtkOneTarget, this._dstPosAtkOneTarget, this._elapsedAtkOneTarget * 10f);
+                attacker.view.WorldPosition = Vector3.Lerp(_srcPosAtkOneTarget, _dstPosAtkOneTarget, _elapsedAtkOneTarget * 10f);
             }
-            if (this._elapsedAtkOneTarget > 0.25f)
+            if (_elapsedAtkOneTarget > 0.25f)
             {
-                this._elapsedAtkOneTarget = 0f;
-                this._srcPosAtkOneTarget = Vector3.zero;
-                this._dstPosAtkOneTarget = Vector3.zero;
-                if (this._victimList == null || this._victimList.Count == 0)
+                _elapsedAtkOneTarget = 0f;
+                _srcPosAtkOneTarget = Vector3.zero;
+                _dstPosAtkOneTarget = Vector3.zero;
+                if (_victimList == null || _victimList.Count == 0)
                 {
-                    this.state = FarAreaEffect.EffectState.End;
+                    state = FarAreaEffect.EffectState.End;
                 }
-                else if (!this._victimList.Exists((BattleFarAreaPlayManager.VictimInfo x) => !x.unitModel.IsDead()))
+                else if (!_victimList.Exists((BattleFarAreaPlayManager.VictimInfo x) => !x.unitModel.IsDead()))
                 {
-                    this._victimList.Clear();
-                    this.state = FarAreaEffect.EffectState.End;
+                    _victimList.Clear();
+                    state = FarAreaEffect.EffectState.End;
                 }
             }
         }
-        else if (this.state == FarAreaEffect.EffectState.End)
+        else if (state == FarAreaEffect.EffectState.End)
         {
-            this._elapsedEndAtk += deltaTime;
-            if (this._elapsedEndAtk > 0.35f)
+            _elapsedEndAtk += deltaTime;
+            if (_elapsedEndAtk > 0.35f)
             {
-                this._self.view.charAppearance.ChangeMotion(ActionDetail.Default);
-                this.state = FarAreaEffect.EffectState.None;
-                this._elapsedEndAtk = 0f;
+                _self.view.charAppearance.ChangeMotion(ActionDetail.Default);
+                state = FarAreaEffect.EffectState.None;
+                _elapsedEndAtk = 0f;
             }
         }
-        else if (this._self.moveDetail.isArrived)
+        else if (_self.moveDetail.isArrived)
         {
             SingletonBehavior<BattleCamManager>.Instance.FollowUnits(false, BattleObjectManager.instance.GetAliveList(false));
             result = true;
-            if (this._trailObject != null)
+            if (_trailObject != null)
             {
-                UnityEngine.Object.Destroy(this._trailObject);
+                UnityEngine.Object.Destroy(_trailObject);
             }
             UnityEngine.Object.Destroy(base.gameObject);
         }
@@ -199,9 +199,9 @@ public class FarAreaeffect_SiRvArgaliaAreaEx : FarAreaEffect
     // Token: 0x0600014F RID: 335 RVA: 0x00002A82 File Offset: 0x00000C82
     protected override void Update()
     {
-        if (this.isRunning && this._self.moveDetail.isArrived)
+        if (isRunning && _self.moveDetail.isArrived)
         {
-            this.isRunning = false;
+            isRunning = false;
         }
     }
 

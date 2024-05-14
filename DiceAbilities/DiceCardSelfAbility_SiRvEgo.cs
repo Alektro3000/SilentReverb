@@ -36,8 +36,8 @@
             base.OnStartBattle();
             base.owner.bufListDetail.AddBuf(new BattleUnitBuf_SiRvResonanceBuf
             {
-                Flags = this.GetType(),
-                stack = this.GetStack()
+                Flags = GetType(),
+                stack = GetStack()
             });
         }
 

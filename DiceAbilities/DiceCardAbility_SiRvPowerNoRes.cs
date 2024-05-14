@@ -7,9 +7,9 @@
         public override void BeforeRollDice()
         {
             base.BeforeRollDice();
-            if (base.Resonance() == 0 && this.behavior != null)
+            if (base.Resonance() == 0 && behavior != null)
             {
-                this.behavior.ApplyDiceStatBonus(new DiceStatBonus
+                behavior.ApplyDiceStatBonus(new DiceStatBonus
                 {
                     power = 3
                 });

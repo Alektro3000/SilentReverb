@@ -13,14 +13,14 @@
         // Token: 0x06000167 RID: 359 RVA: 0x00002B6D File Offset: 0x00000D6D
         public override void OnUseCard()
         {
-            this.card.card.exhaust = true;
+            card.card.exhaust = true;
         }
 
         // Token: 0x06000168 RID: 360 RVA: 0x00002B80 File Offset: 0x00000D80
         public override void OnDiscard(BattleUnitModel unit, BattleDiceCardModel self)
         {
             base.OnDiscard(unit, self);
-            this.card.card.exhaust = true;
+            card.card.exhaust = true;
         }
 
         // Token: 0x17000016 RID: 22

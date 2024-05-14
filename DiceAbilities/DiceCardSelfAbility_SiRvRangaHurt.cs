@@ -8,11 +8,11 @@
         {
             for (int i = 0; i < base.IsResonance(); i++)
             {
-                this.card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_damage3atk());
+                card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_damage3atk());
             }
             if (base.IsResonance() == 0)
             {
-                this.card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_break3atk());
+                card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_break3atk());
             }
         }
     }

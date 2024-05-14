@@ -6,7 +6,7 @@
         // Token: 0x0600022B RID: 555 RVA: 0x0000305F File Offset: 0x0000125F
         public override void OnUseCard()
         {
-            this.card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_immuneDestory());
+            card.ApplyDiceAbility(DiceMatch.AllAttackDice, new DiceCardAbility_immuneDestory());
         }
 
         // Token: 0x0600022D RID: 557 RVA: 0x0000BEF8 File Offset: 0x0000A0F8
@@ -14,12 +14,12 @@
         {
             if (base.IsResonance() == 0)
             {
-                this.card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.NullifyPower, 1, base.owner);
-                this.card.target.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.NullifyPower, 1, base.owner);
+                card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.NullifyPower, 1, base.owner);
+                card.target.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.NullifyPower, 1, base.owner);
             }
             if (base.IsResonance() > 0)
             {
-                this.card.target.bufListDetail.AddBuf(new DiceCardSelfAbility_SiRvLento.SupBuf());
+                card.target.bufListDetail.AddBuf(new DiceCardSelfAbility_SiRvLento.SupBuf());
             }
         }
 
@@ -35,7 +35,7 @@
             // Token: 0x06000230 RID: 560 RVA: 0x000024EB File Offset: 0x000006EB
             public override void OnEndParrying()
             {
-                this.Destroy();
+                Destroy();
             }
         }
     }

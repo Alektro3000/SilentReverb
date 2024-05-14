@@ -6,9 +6,9 @@
         // Token: 0x06000222 RID: 546 RVA: 0x0000BD70 File Offset: 0x00009F70
         public override void OnStartBattle()
         {
-            this.card.target.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.Vibrate, 3, base.owner);
-            this.card.owner.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.Protection, 3, base.owner);
-            this.card.owner.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.BreakProtection, 3, base.owner);
+            card.target.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.Vibrate, 3, base.owner);
+            card.owner.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.Protection, 3, base.owner);
+            card.owner.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.BreakProtection, 3, base.owner);
         }
 
         // Token: 0x1700001B RID: 27

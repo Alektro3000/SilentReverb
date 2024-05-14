@@ -93,6 +93,7 @@
     <Compile Include="Animations\BehaviourAction_SiRvDawnAction2.cs" />
     <Compile Include="Animations\BehaviourAction_SiRvRangaAction.cs" />
     <Compile Include="Animations\BehaviourAction_SiRvVivaceAction.cs" />
+    <Compile Include="DiceAbilities\DiceCardAbility_SiRvImpromptuDice1.cs" />
     <Compile Include="DiceAttackEffectBase.cs" />
     <Compile Include="DiceAbilities\DiceCardAbility_SiRvAdagioDice.cs" />
     <Compile Include="DiceAbilities\Base.cs" />

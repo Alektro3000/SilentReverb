@@ -9,11 +9,11 @@
             int num = base.IsResonance();
             if (num > 0)
             {
-                this.card.target.cardSlotDetail.LoseWhenStartRound(3 * num);
+                card.target.cardSlotDetail.LoseWhenStartRound(3 * num);
             }
             if (base.IsResonance() == 0)
             {
-                this.card.target.allyCardDetail.DiscardACardLowest();
+                card.target.allyCardDetail.DiscardACardLowest();
             }
         }
     }

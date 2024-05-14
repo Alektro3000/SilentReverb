@@ -14,10 +14,10 @@ namespace SilentReverbMod
             {
                 return;
             }
-            if (this.count < Math.Min(activatedBuf.stack, 4) * base.Resonance())
+            if (count < Math.Min(activatedBuf.stack, 4) * base.Resonance())
             {
                 base.ActivateBonusAttackDice();
-                this.count++;
+                count++;
             }
         }
 

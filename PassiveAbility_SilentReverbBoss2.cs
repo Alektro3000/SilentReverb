@@ -35,7 +35,7 @@
             {
                 return;
             }
-            target.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Vibrate, stack, this.owner);
+            target.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Vibrate, stack, owner);
         }
 
         //Много добора, много света
